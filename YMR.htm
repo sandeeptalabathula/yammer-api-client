@@ -1,0 +1,86 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title>Yammer JSAPI Test</title>
+    <link href="Styles/ymr.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="Scripts/jquery.min.js"></script>
+    <script data-app-id="xxxxxxxxx" src="https://assets.yammer.com/platform/yam.js"></script>
+    <script type="text/javascript" src="Scripts/ymr.js"></script>
+    <script type="text/javascript" src="Scripts/ui-notifications.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            /*INITIALIZE MENU*/
+            $(".accountDD").hide();
+            $(".headerRight a.icon").click(function () {
+                $(".accountDD").toggle();
+            });
+            $(".headerRight span.icontext").click(function () {
+                $(".accountDD").toggle();
+            });
+
+            /*INITIALIZE NOTIFICATIONS*/
+            hideAllMessages();
+
+            /*INITIALIZE YAMMER*/
+            yammer.configure();
+        });
+        
+    </script>
+</head>
+<body>
+<!--NOTIFICATION AREA-->
+    <div class="notifications">
+        <div style="display:none;" class="error message"></div>
+        <div style="display:none;" class="warning message"></div>
+        <div style="display:none;" class="success message"></div>
+    </div> 
+
+    <div class="headWrapper">
+        <div class="head">
+            <div class="headerLeft">
+                <a href="#" class="sprite logo"></a>
+            </div>
+            <div class="headerRight">
+                <a href="#" class="sprite icon"></a>
+                <span class="icontext">API TEST CLIENT</span>
+                <div class="accountDD">
+                    <ul>
+                        <li>
+                            <h3><a href="#">Your Yammer Account</a></h3>
+                        </li>
+                        <li class="hr"></li>
+                        <li><a href="#"  onclick="checkYmrAuthentication()">Check Authentication</a></li>
+                        <li class="hr"></li>
+                        <li><a href="#" onclick="getYmrAuthenticated()">Login</a></li>
+                        <li><a href="#" onclick="logoutOfYmr()">LogOut</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="mainWrapper">
+        <div class="leftWrapper">
+            <ul class="leftMenu">
+                <li><a href="#" class="buttonStyledLink" onclick="getUserDetail('stalabathula@deloitte.com')">My Detail</a><br /></li>
+                <li><a href="#" class="buttonStyledLink" onclick="getGroups()">Browse Groups</a><br /></li>
+                <li>
+                    <textarea id="postmsg"></textarea><br />
+                    <a href="#" class="buttonStyledLink" onclick="postToYammer($('#postmsg').val())">Post</a><br />
+                </li>   
+                <li>
+                    <a href="#" class="buttonStyledLink" onclick="getYammerFeed()">Yammer Feed</a><br />
+                </li>
+                <li>
+                    <input type="text" id="useremail" />
+                    <a href="#" class="buttonStyledLink" onclick="getUserDetail($('#useremail').val())">Get User</a><br />
+                </li>
+            </ul>  
+        </div>
+        <div class="rightWrapper">
+            <h4 style="color:#0066FF">YAMMER RESPONSE...</h4>
+            <div id="ymrresponse" class="ymrresponse">
+            </div>
+        </div>
+    </div>
+</body>
+</html>
