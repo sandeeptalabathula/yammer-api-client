@@ -160,9 +160,9 @@ getYammerFeed = function () {
     $('.ymrresponse').empty();
     yam.connect.embedFeed(
         { container: '#ymrresponse'
-        , network: 'deloitte.com'
+        , network: 'testnetwork.com' //name of yammer network you want to connect
         , feedType: 'group'
-        , feedId: '372393'
+        , feedId: '123456' //feed ID
         });
 }
 
